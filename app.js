@@ -6,7 +6,7 @@
  const http = require('http');
  const url = require('url');
  const StringDecoder = require('string_decoder').StringDecoder;
-
+const handlers = require('./handlers');
 
 
 // Create a server so it can deal with our requestes
@@ -78,27 +78,10 @@
    });
  });
 
-
-let handlers = {};
-
-handlers.home = function (data, callback) {
-  callback(200, {'location':'home'});
-};
-
-handlers.users = function (data, callback) {
-  callback(200, {'location':'users'});
-};
-
-handlers.notFound = function (data, callback) {
-  callback(404);
-};
-
 let router = {
   'home': handlers.home,
   'users': handlers.users
 };
-
-
 
 // Listen on a port
  server.listen(3000, () => {
